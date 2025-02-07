@@ -3,10 +3,79 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coldwaterkim</title>
+    <title>Coldwaterkim's Website</title>
+    
+    <!-- ✅ 추가된 스타일 (배경 적용) -->
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            background-size: cover;
+            background-position: center;
+            transition: background 0.5s ease-in-out;
+        }
+        #upload-container {
+            position: absolute;
+            bottom: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 10px;
+            border-radius: 10px;
+        }
+        label {
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        input[type="file"] {
+            display: none;
+        }
+    </style>
 </head>
 <body>
+
     <h1>Welcome to Coldwaterkim's Website!</h1>
     <p>This is my personal blog.</p>
+
+    <!-- ✅ 추가된 파일 업로드 기능 -->
+    <div id="upload-container">
+        <label for="bg-upload">Upload Background</label>
+        <input type="file" id="bg-upload" accept="image/*">
+    </div>
+
+    <!-- ✅ 추가된 JavaScript (배경 이미지 변경 기능) -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const uploadInput = document.getElementById("bg-upload");
+            const body = document.body;
+
+            // 기존 배경 이미지가 있으면 로드
+            const savedBackground = localStorage.getItem("backgroundImage");
+            if (savedBackground) {
+                body.style.backgroundImage = `url(${savedBackground})`;
+            }
+
+            // 파일 업로드 이벤트 리스너
+            uploadInput.addEventListener("change", function (event) {
+                const file = event.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function (e) {
+                        const imageUrl = e.target.result;
+                        body.style.backgroundImage = `url(${imageUrl})`;
+
+                        // localStorage에 저장 (브라우저에 기억)
+                        localStorage.setItem("backgroundImage", imageUrl);
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+        });
+    </script>
+
 </body>
 </html>
