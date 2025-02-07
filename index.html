@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Coldwaterkim's Website</title>
     
-    <!-- ✅ 추가된 스타일 (배경 적용) -->
+    <!-- ✅ 추가된 CSS -->
     <style>
         body {
             margin: 0;
@@ -19,47 +19,76 @@
             background-position: center;
             transition: background 0.5s ease-in-out;
         }
-        #upload-container {
+        #upload-container, #color-picker-container {
             position: absolute;
             bottom: 20px;
             background: rgba(0, 0, 0, 0.7);
             padding: 10px;
             border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
         label {
             color: white;
             font-size: 16px;
             cursor: pointer;
         }
-        input[type="file"] {
+        input[type="file"], input[type="color"] {
             display: none;
+        }
+        .color-box {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 2px solid white;
         }
     </style>
 </head>
 <body>
 
-    <h1>Welcome to Coldwaterkim's Website!</h1>
+    <!-- 제목 -->
+    <h1 id="title">Welcome to Coldwaterkim's Website!</h1>
     <p>This is my personal blog.</p>
 
-    <!-- ✅ 추가된 파일 업로드 기능 -->
+    <!-- ✅ 배경 업로드 기능 -->
     <div id="upload-container">
         <label for="bg-upload">Upload Background</label>
         <input type="file" id="bg-upload" accept="image/*">
     </div>
 
-    <!-- ✅ 추가된 JavaScript (배경 이미지 변경 기능) -->
+    <!-- ✅ 텍스트 색상 선택 기능 -->
+    <div id="color-picker-container">
+        <label>Choose Title Color:</label>
+        <div class="color-box" style="background: red;" data-color="red"></div>
+        <div class="color-box" style="background: blue;" data-color="blue"></div>
+        <div class="color-box" style="background: green;" data-color="green"></div>
+        <div class="color-box" style="background: orange;" data-color="orange"></div>
+        <div class="color-box" style="background: purple;" data-color="purple"></div>
+    </div>
+
+    <!-- ✅ JavaScript 추가 -->
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             const uploadInput = document.getElementById("bg-upload");
             const body = document.body;
+            const title = document.getElementById("title");
+            const colorBoxes = document.querySelectorAll(".color-box");
 
-            // 기존 배경 이미지가 있으면 로드
+            // ✅ 기존 배경 이미지 로드
             const savedBackground = localStorage.getItem("backgroundImage");
             if (savedBackground) {
                 body.style.backgroundImage = `url(${savedBackground})`;
             }
 
-            // 파일 업로드 이벤트 리스너
+            // ✅ 기존 텍스트 색상 로드
+            const savedColor = localStorage.getItem("titleColor");
+            if (savedColor) {
+                title.style.color = savedColor;
+            }
+
+            // ✅ 배경 업로드 이벤트
             uploadInput.addEventListener("change", function (event) {
                 const file = event.target.files[0];
                 if (file) {
@@ -67,12 +96,19 @@
                     reader.onload = function (e) {
                         const imageUrl = e.target.result;
                         body.style.backgroundImage = `url(${imageUrl})`;
-
-                        // localStorage에 저장 (브라우저에 기억)
                         localStorage.setItem("backgroundImage", imageUrl);
                     };
                     reader.readAsDataURL(file);
                 }
+            });
+
+            // ✅ 텍스트 색상 변경 이벤트
+            colorBoxes.forEach(box => {
+                box.addEventListener("click", function () {
+                    const selectedColor = this.getAttribute("data-color");
+                    title.style.color = selectedColor;
+                    localStorage.setItem("titleColor", selectedColor);
+                });
             });
         });
     </script>
