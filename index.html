@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Coldwaterkim's Website</title>
     
-    <!-- ✅ CSS 수정 (텍스트 색상 변경 기능 제거) -->
+    <!-- ✅ CSS -->
     <style>
         body {
             margin: 0;
@@ -39,23 +39,22 @@
 </head>
 <body>
 
-    <!-- 제목 -->
+    <!-- ✅ "This is my personal blog." 삭제 -->
     <h1>Welcome to Coldwaterkim's Website!</h1>
-    <p>This is my personal blog.</p>
 
-    <!-- ✅ 배경 업로드 기능 (텍스트 색상 기능 제거됨) -->
+    <!-- ✅ 배경 업로드 기능 유지 -->
     <div id="upload-container">
         <label for="bg-upload">Upload Background</label>
         <input type="file" id="bg-upload" accept="image/*">
     </div>
 
-    <!-- ✅ JavaScript (텍스트 색상 변경 기능 제거) -->
+    <!-- ✅ JavaScript -->
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             const uploadInput = document.getElementById("bg-upload");
             const body = document.body;
 
-            // ✅ 기존 배경 이미지가 있으면 로드
+            // ✅ 기존 배경 이미지 로드
             const savedBackground = localStorage.getItem("backgroundImage");
             if (savedBackground) {
                 body.setAttribute("style", `background-image: url(${savedBackground}); background-size: cover; background-position: center; background-attachment: fixed;`);
@@ -70,7 +69,7 @@
                         const imageUrl = e.target.result;
                         body.setAttribute("style", `background-image: url(${imageUrl}); background-size: cover; background-position: center; background-attachment: fixed;`);
                         
-                        // localStorage에 저장
+                        // localStorage 저장
                         localStorage.setItem("backgroundImage", imageUrl);
                     };
                     reader.readAsDataURL(file);
