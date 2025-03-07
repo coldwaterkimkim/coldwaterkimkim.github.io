@@ -3,9 +3,29 @@
 <head>
   <meta charset="UTF-8">
   <title>My Personal Website</title>
+  <style>
+    /* 숨겨진 문구 초기 상태 */
+    #easter-egg {
+      display: none;
+      font-weight: bold;
+      margin-top: 20px;
+    }
+  </style>
 </head>
 <body>
-  <p>HELLO YOU!</p>
+  <!-- 클릭하면 이스터에그가 등장할 부분 -->
+  <p id="hello">HELLO YOU!</p>
   <p>THIS IS COLDWATER_KIM'S WEBSITE</p>
+  
+  <!-- 처음에 숨겨져 있다가 나타날 문구 -->
+  <p id="easter-egg">🎉 깜짝! 이스터에그를 발견했군요! 🎉</p>
+
+  <script>
+    // 'HELLO YOU!' 텍스트 클릭 시 숨겨진 문구를 표시
+    document.getElementById("hello").addEventListener("click", function() {
+      const egg = document.getElementById("easter-egg");
+      egg.style.display = "block"; // 보이도록 변경
+    });
+  </script>
 </body>
 </html>
