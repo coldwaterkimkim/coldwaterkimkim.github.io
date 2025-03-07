@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <title>My Personal Website</title>
   <style>
-    /* 문서를 Times New Roman 폰트로 설정하고 가운데 정렬 */
+    /* Times New Roman 폰트 및 가운데 정렬 */
     body {
       font-family: 'Times New Roman', Times, serif;
       text-align: center;
@@ -13,40 +13,66 @@
 
     /* "Hello you!" 폰트 크기 애니메이션 */
     #hello {
-      animation: pulsate 2s infinite; /* 2초 주기로 무한 반복 */
+      animation: pulsate 2s infinite;
       cursor: pointer; /* 마우스가 올라갔을 때 클릭 가능하게 보여주기 위함 */
     }
-
-    /* 폰트 크기가 점점 커졌다 작아지는 keyframe */
     @keyframes pulsate {
       0%, 100% {
-        font-size: 2rem; /* 기본 폰트 크기 */
+        font-size: 2rem;
       }
       50% {
-        font-size: 3rem; /* 중간에 더 크게 보여줌 */
+        font-size: 3rem;
       }
     }
 
-    /* 숨겨진 이스터에그 초기 상태 */
-    #easter-egg {
-      display: none;
-      font-weight: bold;
+    /* 클릭 시 메시지가 추가될 영역 스타일(선택사항) */
+    #easter-egg-container {
       margin-top: 30px;
     }
   </style>
 </head>
 <body>
-  <!-- 클릭하면 이스터에그가 뜨도록 설정한 문구 -->
+  <!-- 클릭하면 순차적으로 이스터에그 메시지가 추가됨 -->
   <p id="hello">HELLO YOU!</p>
   <p>THIS IS COLDWATER_KIM'S WEBSITE</p>
-  
-  <!-- 숨겨진 이스터에그 메시지 -->
-  <p id="easter-egg"> 이걸 발견하다니, 허거덩거덩스~ ㅇㅁㅇ;;</p>
+
+  <!-- 메시지가 동적으로 추가될 컨테이너 -->
+  <div id="easter-egg-container"></div>
 
   <script>
+    /* 11번까지만 노출할 이스터에그 메시지 (사용자가 직접 수정) */
+    const easterEggMessages = [
+      "[이걸 발견하다니 허거덩거덩스~ ㅇㅁㅇ;;]",
+      "[?!!]",
+      "[뭘 또 클릭을..]",
+      "[...]",
+      "[...?!]",
+      "[언제까지 클릭 할 거에요?]",
+      "[끝]",
+      "[라스트끝]",
+      "[마지막라스트끝]",
+      "[최종마지막라스트끝]",
+      "[찐최종마지막라스트끝]",
+      "[찐찐최종마지막라스트끝]",
+      "[진심_찐찐최종마지막라스트끝]",
+      "[진짜라니까..]"
+      "[그럼..]",
+      "[굿바이!👋]",
+    ];
+
+    let clickCount = 0;
+
     document.getElementById("hello").addEventListener("click", function() {
-      const egg = document.getElementById("easter-egg");
-      egg.style.display = "block"; // 보이도록 변경
+      // 11번 클릭 이내라면 새 이스터에그 문구를 추가
+      if (clickCount < easterEggMessages.length) {
+        const container = document.getElementById("easter-egg-container");
+        const newMessage = document.createElement("p");
+        newMessage.textContent = easterEggMessages[clickCount];
+        container.appendChild(newMessage);
+
+        clickCount++;
+      }
+      // 11번을 초과하면 더 이상 아무 일도 일어나지 않음
     });
   </script>
 </body>
