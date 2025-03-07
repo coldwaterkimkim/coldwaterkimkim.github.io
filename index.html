@@ -3,9 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coldwaterkim's Website</title>
-    
-    <!-- ✅ CSS -->
+    <title>Coldwater_Kim's Website</title>
     <style>
         body {
             margin: 0;
@@ -14,69 +12,15 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            flex-direction: column;
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            transition: background 0.5s ease-in-out;
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
         }
-        #upload-container {
-            position: absolute;
-            bottom: 20px;
-            background: rgba(0, 0, 0, 0.7);
-            padding: 10px;
-            border-radius: 10px;
-        }
-        label {
-            color: white;
-            font-size: 16px;
-            cursor: pointer;
-        }
-        input[type="file"] {
-            display: none;
+        h1 {
+            color: #333;
         }
     </style>
 </head>
 <body>
-
-    <!-- ✅ "This is my personal blog." 삭제 -->
-    <h1>Welcome to Coldwaterkim's Website!</h1>
-
-    <!-- ✅ 배경 업로드 기능 유지 -->
-    <div id="upload-container">
-        <label for="bg-upload">Upload Background</label>
-        <input type="file" id="bg-upload" accept="image/*">
-    </div>
-
-    <!-- ✅ JavaScript -->
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const uploadInput = document.getElementById("bg-upload");
-            const body = document.body;
-
-            // ✅ 기존 배경 이미지 로드
-            const savedBackground = localStorage.getItem("backgroundImage");
-            if (savedBackground) {
-                body.setAttribute("style", `background-image: url(${savedBackground}); background-size: cover; background-position: center; background-attachment: fixed;`);
-            }
-
-            // ✅ 배경 업로드 이벤트
-            uploadInput.addEventListener("change", function (event) {
-                const file = event.target.files[0];
-                if (file) {
-                    const reader = new FileReader();
-                    reader.onload = function (e) {
-                        const imageUrl = e.target.result;
-                        body.setAttribute("style", `background-image: url(${imageUrl}); background-size: cover; background-position: center; background-attachment: fixed;`);
-                        
-                        // localStorage 저장
-                        localStorage.setItem("backgroundImage", imageUrl);
-                    };
-                    reader.readAsDataURL(file);
-                }
-            });
-        });
-    </script>
-
+    <h1>This is Coldwater_Kim's Website</h1>
 </body>
 </html>
