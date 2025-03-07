@@ -40,7 +40,7 @@
   <div id="easter-egg-container"></div>
 
   <script>
-    /* 11번까지만 노출할 이스터에그 메시지 (사용자가 직접 수정) */
+    /* 16번까지만 노출할 이스터에그 메시지 (사용자가 직접 수정) */
     const easterEggMessages = [
       "[이걸 발견하다니 허거덩거덩스~ ㅇㅁㅇ;;]",
       "[?!!]",
@@ -63,7 +63,7 @@
     let clickCount = 0;
 
     document.getElementById("hello").addEventListener("click", function() {
-      // 11번 클릭 이내라면 새 이스터에그 문구를 추가
+      // 16번 클릭 이내라면 새 이스터에그 문구를 추가
       if (clickCount < easterEggMessages.length) {
         const container = document.getElementById("easter-egg-container");
         const newMessage = document.createElement("p");
@@ -72,7 +72,7 @@
 
         clickCount++;
       }
-      // 11번을 초과하면 더 이상 아무 일도 일어나지 않음
+      // 16번을 초과하면 더 이상 아무 일도 일어나지 않음
     });
   </script>
 </body>
