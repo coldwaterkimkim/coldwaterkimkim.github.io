@@ -10,19 +10,18 @@
       text-align: center;
       margin: 50px;
 
-      /* images 폴더 안의 이미지를 URL로 지정하는 등 필요에 맞게 background 설정 가능 */
-      /* background-image: url('images/IMG_3197.jpeg'); */
-      /* background-repeat: no-repeat; */
-      /* background-size: cover; */
-      /* background-position: center center; */
+      /* 필요 시 배경이미지 설정 예시
+      background-image: url('images/IMG_3197.jpeg');
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center center;
+      */
     }
 
     /* "Hello you!" 폰트 크기 애니메이션 + 텍스트 선택 방지 */
     #hello {
       animation: pulsate 2s infinite;
       cursor: pointer;
-
-      /* 텍스트가 드래그/선택되지 않도록 설정 */
       user-select: none;          /* 최신 표준 */
       -webkit-user-select: none;  /* 사파리/크롬 옛날 버전 */
       -ms-user-select: none;      /* IE/엣지 구버전 */
@@ -46,13 +45,7 @@
   <!-- 클릭 시 순차적 이스터에그 표시 -->
   <p id="hello">HELLO YOU!</p>
   <p>THIS IS COLDWATER_KIM'S WEBSITE</p>
-
-  <!-- 비밀번호 입력 칸 & 결과 표시 영역 -->
-  <p>
-    <span>Passcode: </span>
-    <input type="text" id="password-input" placeholder="?!" />
-  </p>
-  <div id="input-result"></div>
+  <p>FIND OUT WHAT YOU CAN DO</p>
 
   <!-- 이스터에그 메시지가 삽입될 영역 -->
   <div id="easter-egg-container"></div>
@@ -65,6 +58,7 @@
       "[뭘 또 클릭을..]",
       "[...]",
       "[...?!]",
+      "[언제까지 클릭 할 거에요?]",
       "[끝]",
       "[라스트끝]",
       "[마지막라스트끝]",
@@ -74,7 +68,7 @@
       "[진심_찐찐최종마지막라스트끝]",
       "[진짜라니까..]",
       "[그럼..]",
-      "[^^]"
+      "[굿바이!👋]"
     ];
 
     let clickCount = 0;
@@ -86,23 +80,6 @@
         newMessage.textContent = easterEggMessages[clickCount];
         container.appendChild(newMessage);
         clickCount++;
-      }
-    });
-
-    /* 비밀번호 입력 후 엔터 시 결과 표시 */
-    const passwordInput = document.getElementById("password-input");
-    passwordInput.addEventListener("keydown", function(event) {
-      if (event.key === "Enter") {
-        event.preventDefault(); // 기본 엔터 동작 방지
-        // 입력칸 초기화
-        passwordInput.value = "";
-
-        // 빨간 텍스트 "[응 그거 아냐]" 추가
-        const resultDiv = document.getElementById("input-result");
-        const message = document.createElement("p");
-        message.textContent = "[응 그거 아냐]";
-        message.style.color = "red";
-        resultDiv.appendChild(message);
       }
     });
   </script>
